@@ -11,8 +11,8 @@ with:
 python-version: '3.x'
 - name: パッケージのインストール
 run: |
-python -m pip install --upgrade pip
-pip install flake8 pytest
+  python -m pip install --upgrade pip
+  pip install flake8 pytest
 - name: Lint
 run: |
 flake8 . --count --show-source --statistics --exclude=./test_*.py
@@ -20,4 +20,8 @@ flake8 . --count --show-source --statistics --exclude=./test_*.py
   run:  ls ./fun-*.txt
 - name: テスト
 run: |
-pytest test_*.py
+– pytest test.py –-junitxml='test-report.xml'
+- name: レポートの保存
+  with:
+  name: test-report
+  path: './test-report.xml'
