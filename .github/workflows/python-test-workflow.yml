@@ -1,28 +1,28 @@
 name: Python test
 on: [push]
 jobs:
-build:
-runs-on: ubuntu-latest
-steps:
-- uses: actions/checkout@v4
-- name: セットアップ
-uses: actions/setup-python@v5.1.0
-with:
-python-version: '3.x'
-- name: パッケージのインストール
-  run: |
-    python -m pip install --upgrade pip
-    pip install flake8 pytest
-- name: 静的検査
-run: |
-flake8 . --count --show-source --statistics --exclude=./test_*.py
-- name: テストファイルの一覧
-  run:  ls ./fun-*.txt
-- name: テスト
-run: |
-– pytest test.py –-junitxml='test-report.xml'
-- name: レポートの保存
-  uses: actions/upload-artifact@v4.3.3 
-  with:
-    name: test-report
-    path: './test-report.xml'
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: セットアップ
+        uses: actions/setup-python@v5.1.0
+        with:
+          python-version: '3.x'
+      - name: パッケージのインストール
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+      - name: 静的検査
+        run: |
+          flake8 . --count --show-source --statistics --exclude=./test_*.py
+      - name: テストファイルの一覧
+        run:  ls ./fun-*.txt
+      - name: テスト
+        run: |
+          – pytest test.py –-junitxml='test-report.xml'
+      - name: レポートの保存
+        uses: actions/upload-artifact@v4.3.3 
+        with:
+          name: test-report
+          path: './test-report.xml'
